@@ -1,0 +1,33 @@
+@import (reference) '../../less/variables.less';
+
+div.clock {
+	display: inline-block;
+	color: @medium;
+	padding: 0.05em 0.15em;
+	padding-bottom: 0;
+	border-top: 7px solid @medium;
+	background-color: @darkMedium;
+	font-size: 8em;
+	font-weight: @fontWeightThin;
+
+	>span {
+		display: inline-block;
+	}
+
+	span.hours, span.minutes {
+		color: @white;
+	}
+
+	span.divider {
+		width: 0.1em;
+	}
+
+	span.minutes {
+		margin-right: 0.1em;
+	}
+
+	span.seconds {
+		color: darken(@white, 37.5%);
+		font-size: 0.5em;
+	}
+}

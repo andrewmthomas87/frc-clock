@@ -1,0 +1,22 @@
+{
+	"compilerOptions": {
+		"baseUrl": "src",
+		"experimentalDecorators": true,
+		"jsx": "react",
+		"lib": [
+			"dom",
+			"es2015"
+		],
+		"noImplicitAny": true,
+		"removeComments": true,
+		"strictNullChecks": true,
+		"target": "es5"
+	},
+	"exclude": [
+		"node_modules"
+	],
+	"include": [
+		"src/**/*ts",
+		"src/**/*.tsx"
+	]
+}

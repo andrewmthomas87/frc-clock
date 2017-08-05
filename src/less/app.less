@@ -1,0 +1,25 @@
+@import (reference) './variables.less';
+
+html {
+	font-family: @fontFamily;
+	font-size: @fontSize;
+	font-weight: @fontWeightRegular;
+}
+
+body {
+	margin: 0;
+	background-color: @dark;
+}
+
+div#app {
+	min-height: 100vh;
+	text-align: center;
+
+	>div {
+		display: inline-flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		padding-top: 3.75em;
+	}
+}
