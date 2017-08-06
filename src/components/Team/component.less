@@ -1,17 +1,58 @@
 @import (reference) '../../less/variables.less';
 
 div.team {
+	width: 25.8945em;
+
 	span.name {
 		display: block;
 		color: @dark;
-		min-width: 11.508666667em;
-		max-width: ~'calc(100% - 2em)';
 		padding: 0.25em 0.75em;
-		background-color: @light;
-		border-top: 7px solid @medium;
+		background-color: @white;
+		border-top: 7px solid @lightMedium;
 		font-size: 2.25em;
 		font-weight: @fontWeightLight;
 		text-align: center;
-		box-sizing: border-box;
+	}
+
+	span.information {
+		display: block;
+		color: @medium;
+		padding: 0.75em 1.5em;
+		background-color: @darkMedium;
+		font-size: 0.75em;
+		font-weight: @fontWeightBold;
+
+		span.item {
+			display: inline-block;
+			color: @lightMedium;
+			margin: 0 0.5em;
+			font-weight: @fontWeightRegular;
+			vertical-align: middle;
+
+			a {
+				display: inline-block;
+				width: 1em;
+				height: 1em;
+				background-position: center;
+				background-repeat: no-repeat;
+				text-decoration: none;
+
+				&.tba {
+					background-image: url('../../assets/tba_lamp.svg');
+					background-size: 64%;
+				}
+
+				&.website {
+					background-image: url('../../assets/external_link.svg');
+					background-size: 75%;
+				}
+			}
+		}
+	}
+
+	span.empty {
+		display: block;
+		height: 10px;
+		background-color: @darkMedium;
 	}
 }

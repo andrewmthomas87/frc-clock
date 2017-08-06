@@ -27,7 +27,8 @@ module.exports = {
 					],
 					fallback: 'style-loader'
 				})
-			}
+			},
+			{ test: /\.svg$/, loader: 'url-loader' }
 		]
 	},
 	output: {

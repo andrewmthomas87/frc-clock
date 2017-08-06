@@ -1,0 +1,100 @@
+@import (reference) '../../less/variables.less';
+
+div.awards {
+	width: 40em;
+	max-width: ~'calc(100vw - 5em)';
+	padding: 0.5em 0;
+
+	h2 {
+		color: @light;
+		padding: 0.5em;
+		margin: 0;
+		font-size: 2em;
+		font-weight: @fontWeightLight;
+	}
+
+	h3 {
+		color: @medium;
+		padding: 0.5em;
+		margin: 0;
+		font-size: 1.5em;
+		font-weight: @fontWeightLight;
+	}
+
+	div.years-awards {
+		text-align: center;
+
+		a.award {
+			display: inline-flex;
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: center;
+			position: relative;
+			width: 9.5em;
+			height: 11.38em;
+			padding: 1em 1.5em;
+			margin: 0 0.25em;
+			margin-bottom: 3.02em;
+			background-color: @banner;
+			text-decoration: none;
+			box-sizing: border-box;
+			vertical-align: top;
+			opacity: 0.75;
+			cursor: pointer;
+
+			&.blue {
+				background-color: @blueBanner;
+
+				&:before {
+				border-left: 4.75em solid @blueBanner;
+				border-right: 4.75em solid @blueBanner;
+				border-top: 1.52em solid @blueBanner;
+				border-bottom: 1.52em solid transparent;
+				}
+			}
+
+			&:before {
+				content: '';
+				display: block;
+				position: absolute;
+				left: 0;
+				bottom: -1.52em;
+				width: 0;
+				height: 0;
+				border-left: 4.75em solid @banner;
+				border-right: 4.75em solid @banner;
+				border-top: 1.52em solid @banner;
+				border-bottom: 1.52em solid transparent;
+				z-index: -1;
+			}
+
+			&:hover {
+				opacity: 1;
+			}
+
+			>span {
+				display: inline-flex;
+				flex-direction: column;
+				justify-content: center;
+				color: @light;
+				line-height: 1.5em;
+				text-align: center;
+				text-transform: uppercase;
+
+				>span {
+					display: inline-block;
+				}
+			}
+
+			span.name {
+				min-height: 3.75em;
+				font-size: 0.875em;
+			}
+
+			span.event {
+				min-height: 3em;
+				font-size: 0.75em;
+			}
+		}
+	}
+}

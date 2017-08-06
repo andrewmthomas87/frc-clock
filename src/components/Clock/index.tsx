@@ -12,12 +12,13 @@ const Clock: React.StatelessComponent<IProps> = (): JSX.Element => {
 	const $minutes: number = state.get$Minutes()
 	const $hours: number = state.get$Hours()
 
+	const displayHours: string = `${$hours < 10 ? '0' : ''}${$hours}`
 	const displayMinutes: string = `${$minutes < 10 ? '0' : ''}${$minutes}`
 	const displaySeconds: string = `${$seconds < 10 ? '0' : ''}${$seconds}`
 
 	return (
 		<div className='clock'>
-			<span className='hours'>{$hours}</span>
+			<span className='hours'>{displayHours}</span>
 			<span className='divider'></span>
 			<span className='minutes'>{displayMinutes}</span>
 			<span className='seconds'>{displaySeconds}</span>

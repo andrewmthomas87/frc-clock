@@ -2,6 +2,25 @@ import axios, { AxiosInstance, AxiosResponse } from 'axios'
 
 import config from 'config'
 
+interface IEventSimple {
+	key: string
+	name: string
+	event_code: string
+	event_type: number
+	district: {
+		abbreviation: string
+		display_name: string
+		key: string
+		year: number
+	}
+	city: string
+	state_prov: string
+	country: string
+	start_date: string
+	end_date: string
+	year: number
+}
+
 interface ITeam {
 	key: string
 	team_number: number
@@ -23,6 +42,19 @@ interface ITeam {
 	home_championship: { [propName: string]: string }
 }
 
+interface ITeamAward {
+	name: string
+	award_type: number
+	event_key: string
+	recipient_list: [
+		{
+			team_key: string
+			awardee: string
+		}
+	]
+	year: number
+}
+
 class TBA {
 
 	private _axios: AxiosInstance
@@ -37,8 +69,16 @@ class TBA {
 		})
 	}
 
+	public eventsSimple(year: number): Promise<IEventSimple[]> {
+		return this._get<IEventSimple[]>(`/events/${year}/simple`)
+	}
+
 	public team(teamNumber: number): Promise<ITeam> {
 		return this._get<ITeam>(`/team/frc${teamNumber}`)
+	}
+
+	public teamAwards(teamNumber: number): Promise<ITeamAward[]> {
+		return this._get<ITeamAward[]>(`/team/frc${teamNumber}/awards`)
 	}
 
 	private _get<T>(endpoint: string): Promise<T> {
@@ -57,4 +97,4 @@ class TBA {
 
 const tba: TBA = new TBA()
 
-export { ITeam, tba as default }
+export { IEventSimple, ITeam, ITeamAward, tba as default }
