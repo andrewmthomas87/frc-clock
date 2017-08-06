@@ -107,8 +107,15 @@ class State {
 	}
 
 	private _on$TeamNumber = (teamNumber: number) => {
+		let hours: number = Math.floor(teamNumber / 100)
+		let minutes: number = teamNumber % 100 - 1
 		for (let i = 0; i <= config.teamPrefetchCount; i++) {
-			const requestTeamNumber: number = teamNumber + i
+			minutes++
+			if (minutes === 60) {
+				minutes = 0
+				hours = (hours + 1) % 24
+			}
+			const requestTeamNumber: number = hours * 100 + minutes
 			if (!this._$teamInformation.has(`${requestTeamNumber}`)) {
 				this._mark$TeamInformationPending(requestTeamNumber)
 				setTimeout(() => {
