@@ -15,11 +15,11 @@ const Team: React.StatelessComponent<IProps> = (): JSX.Element => {
 	if ($teamInformation) {
 		return (
 			<div className='team'>
-				<span className='name'>{$teamInformation.nickname || $teamInformation.name}</span>
+				<span className='name'>{$teamInformation.nickname || $teamInformation.name || 'No name'}</span>
 				<span className='information'>
 					<span className='item'><a className='tba' href={`https://www.thebluealliance.com/team/${$teamNumber}`} target='_blank' /></span>
 					&middot;
-					<span className='item'>{$teamInformation.rookie_year}</span>
+					<span className='item'>{$teamInformation.rookie_year || 'No rookie year'}</span>
 					&middot;
 					<span className='item'>{formatLocation($teamInformation)}</span>
 					&middot;
