@@ -9,6 +9,7 @@ class State {
 	private _eventNames: Map<string, string> = new Map()
 
 	private _paused: boolean
+	private _military: boolean
 
 	@observable private _$loaded: boolean = false
 
@@ -24,6 +25,8 @@ class State {
 	}
 
 	public constructor() {
+		this._military = !!JSON.parse(localStorage.getItem('military') || 'true')
+
 		reaction(() => this._$teamNumber, this._on$TeamNumber)
 	}
 
@@ -115,7 +118,13 @@ class State {
 			minutes++
 			if (minutes === 60) {
 				minutes = 0
-				hours = (hours + 1) % 24
+				if (this._military) {
+					hours = (hours + 1) % 24
+				}
+				else {
+					hours = (hours + 1) % 12
+					hours = hours === 0 ? 12 : hours
+				}
 			}
 			const requestTeamNumber: number = hours * 100 + minutes
 			if (!this._$teamInformation.has(`${requestTeamNumber}`)) {
@@ -181,7 +190,13 @@ class State {
 		}
 
 		const now: Date = new Date()
-		this._$hours = now.getHours()
+		if (this._military) {
+			this._$hours = now.getHours()
+		}
+		else {
+			this._$hours = now.getHours() % 12
+			this._$hours = this._$hours === 0 ? 12 : this._$hours
+		}
 		this._$minutes = now.getMinutes()
 		this._$seconds = now.getSeconds()
 
@@ -192,6 +207,10 @@ class State {
 
 	public getPaused(): boolean {
 		return this._paused
+	}
+
+	public getMilitary(): boolean {
+		return this._military
 	}
 
 	public get$Loaded(): boolean {
@@ -224,6 +243,12 @@ class State {
 
 	public get$TeamAwards(teamNumber: number): ITeamAward[] | false | null | undefined {
 		return this._$teamAwards.get(`${teamNumber}`)
+	}
+
+	@action
+	public onToggleMilitary = () => {
+		localStorage.setItem('military', JSON.stringify(!this._military))
+		window.location.reload()
 	}
 
 	public onTogglePlayPause = () => {

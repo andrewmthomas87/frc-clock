@@ -11,10 +11,12 @@ interface IProps extends React.Props<void> { }
 
 const App: React.StatelessComponent<IProps> = (): JSX.Element => {
 	const $loaded: boolean = state.get$Loaded()
+	const military: boolean = state.getMilitary()
 
 	if ($loaded) {
 		return (
 			<div>
+				<a id='military' onClick={state.onToggleMilitary}>{military ? 24 : 12}</a>
 				<Clock />
 				<Team />
 				<Awards />
