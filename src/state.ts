@@ -88,7 +88,7 @@ class State {
 	private _onEvents = (events: IEventSimple[][]) => {
 		for (let yearsEvents of events) {
 			for (let event of yearsEvents) {
-				this._eventNames.set(event.key, event.name.split('sponsored')[0].trim())
+				this._eventNames.set(event.key, event.name.split('sponsored')[0].split('presented')[0].trim())
 			}
 		}
 
