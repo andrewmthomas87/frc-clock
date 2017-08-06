@@ -8,6 +8,8 @@ class State {
 
 	private _eventNames: Map<string, string> = new Map()
 
+	private _paused: boolean
+
 	@observable private _$loaded: boolean = false
 
 	@observable private _$seconds: number = 0
@@ -171,6 +173,8 @@ class State {
 				if (!isNaN(teamNumber) && teamNumber > 0 && teamNumber < 10000) {
 					this._$hours = Math.floor(teamNumber / 100)
 					this._$minutes = teamNumber % 100
+
+					this._paused = true
 					return
 				}
 			}
@@ -181,7 +185,13 @@ class State {
 		this._$minutes = now.getMinutes()
 		this._$seconds = now.getSeconds()
 
+		this._paused = false
+
 		setTimeout(this._updateTime, 1000 - now.getMilliseconds())
+	}
+
+	public getPaused(): boolean {
+		return this._paused
 	}
 
 	public get$Loaded(): boolean {
@@ -214,6 +224,15 @@ class State {
 
 	public get$TeamAwards(teamNumber: number): ITeamAward[] | false | null | undefined {
 		return this._$teamAwards.get(`${teamNumber}`)
+	}
+
+	public onTogglePlayPause = () => {
+		if (this._paused) {
+			window.location.search = ''
+		}
+		else {
+			window.location.search = `?team=${this._$teamNumber}`
+		}
 	}
 
 }

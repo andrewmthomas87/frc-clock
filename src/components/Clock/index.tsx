@@ -22,6 +22,7 @@ const Clock: React.StatelessComponent<IProps> = (): JSX.Element => {
 			<span className='divider'></span>
 			<span className='minutes'>{displayMinutes}</span>
 			<span className='seconds'>{displaySeconds}</span>
+			<a className={state.getPaused() ? 'play' : 'pause'} onClick={state.onTogglePlayPause} />
 		</div>
 	)
 }
