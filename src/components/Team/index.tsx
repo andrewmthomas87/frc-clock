@@ -23,7 +23,7 @@ const Team: React.StatelessComponent<IProps> = (): JSX.Element => {
 					&middot;
 					<span className='item'>{formatLocation($teamInformation)}</span>
 					&middot;
-					<span className='item'>{$teamInformation.home_championship[`${new Date().getFullYear()}`]}</span>
+					<span className='item'>{$teamInformation.home_championship ? $teamInformation.home_championship[`${new Date().getFullYear()}`] : 'Inactive'}</span>
 					{$teamInformation.website ? <span>&middot;</span> : null}
 					{$teamInformation.website ? <span className='item'><a className='website' href={$teamInformation.website} target='_blank' /></span> : null}
 				</span>
