@@ -161,11 +161,11 @@ class State {
 
 	@action
 	private _updateTime = () => {
-		// Fix clock to team number if specified as 'team-number' parameter in URL
+		// Fix clock to team number if specified as 'team' parameter in URL
 		if (window.location.search) {
 			const teamNumbers: string[] = window.location.search.substring(1)
 				.split('&')
-				.filter(parameter => parameter.startsWith('team-number='))
+				.filter(parameter => parameter.startsWith('team='))
 			if (teamNumbers.length && teamNumbers[0].split('=').length === 2) {
 				const teamNumber: number = parseInt(teamNumbers[0].split('=')[1])
 				if (!isNaN(teamNumber) && teamNumber > 0 && teamNumber < 10000) {
