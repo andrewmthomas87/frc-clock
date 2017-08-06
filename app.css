@@ -244,6 +244,18 @@ div#app > div {
           align-items: center;
   padding-top: 3.75em;
 }
+div#app > div a#military {
+  display: inline-block;
+  position: fixed;
+  top: 0.5em;
+  right: 0.5em;
+  color: #bfbfbf;
+  width: 1.5em;
+  padding: 0.5em;
+  border: 1px solid #808080;
+  font-size: 0.875em;
+  cursor: pointer;
+}
 div#loading {
   position: fixed;
   top: calc(50% - 1em);
